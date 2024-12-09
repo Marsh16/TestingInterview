@@ -8,10 +8,11 @@
 import SwiftUI
 
 @main
-struct TestingInterviewApp: App {
+struct LibraryApp: App {
+    @StateObject private var jobViewModel = JobViewModel()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environment(\.colorScheme, .light).environmentObject(jobViewModel)
         }
     }
 }
