@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct JobCard: View{
-    @EnvironmentObject var jobViewModel: JobViewModel
     let job: Job
     var body: some View {
         LazyVStack {
@@ -34,11 +33,5 @@ struct JobCard: View{
                 }
             }.padding()
         }
-    }
-}
-
-#Preview {
-    ForEach(Job.jobData) { job in
-        JobCard(job: job)
     }
 }

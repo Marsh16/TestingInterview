@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 class JobRepository {
+    private var nextLocalId = 1
     func getAllJobs(completion: @escaping ([Job]?) -> Void) {
         let urlString = APIManager.shared.baseURL
         
@@ -39,8 +40,17 @@ class JobRepository {
                 
                 do {
                     let response = try JSONDecoder().decode([Job].self, from: data)
-                    print(response)
-                    completion(response)
+                    print("res: ", response)
+                    let jobsWithIds = response.map { job -> Job in
+                        var job = job
+                        if job.id == nil {
+                            job.id = self.nextLocalId
+                            self.nextLocalId += 1
+                        }
+                        return job
+                    }
+                    
+                    completion(jobsWithIds)
                 } catch {
                     print("Error decoding JSON: \(error)")
                     completion(nil)

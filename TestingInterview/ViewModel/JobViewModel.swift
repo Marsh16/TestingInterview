@@ -19,7 +19,7 @@ class JobViewModel: ObservableObject{
         self.jobRepository = jobRepository
     }
     
-    func getAllJob() {
+    func getAllJob()-> [Job] {
         isLoading = true
         jobRepository.getAllJobs() { [weak self] job in
             guard let job = job else { return }
@@ -29,5 +29,6 @@ class JobViewModel: ObservableObject{
                 let _ = print("success")
             }
         }
+        return jobs
     }
 }

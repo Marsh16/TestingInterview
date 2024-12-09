@@ -32,26 +32,24 @@ struct ContentView: View {
                                 else {
                                     ForEach(jobViewModel.jobs) { job in
                                         NavigationLink {
-                                            EmptyView()
-                                            //                                            BookDetailView(book: book).environmentObject(bookViewModel)
+                                            JobDetailView(job: job).environmentObject(jobViewModel)
                                         } label: {
                                             LazyVStack {
                                                 JobCard(job: job).environmentObject(jobViewModel)
                                             }
+                                            .buttonStyle(PlainButtonStyle())
                                         }
-                                        .buttonStyle(PlainButtonStyle())
                                     }
                                 }
                             }
+                            Spacer()
                         }
-                        Spacer()
+                        .padding(.vertical)
+                    } .onAppear {
+                        jobViewModel.getAllJob()
                     }
-                    .padding(.vertical)
-                }
-                .onAppear {
-                    jobViewModel.getAllJob()
-                }
-            }.navigationBarBackButtonHidden()
+                }.navigationBarBackButtonHidden()
+            }
         }
     }
 }

@@ -7,9 +7,8 @@
 
 import Foundation
 
-// MARK: - JobElement
 struct Job: Codable, Identifiable {
-    let id: String? // Optional id property
+    var id: Int?
     let jobVacancyCode: String
     let positionName: String
     let corporateId: String
@@ -22,3 +21,5 @@ struct Job: Codable, Identifiable {
     let salaryTo: Int
     let postedDate: String?
 }
+
+
